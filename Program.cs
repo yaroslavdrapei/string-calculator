@@ -6,5 +6,8 @@ public class Program
     {
         var tokenizer = new Tokenizer();
         var tokens = tokenizer.Tokenize(Console.ReadLine());
+        
+        var rpn = new ReversePolishNotation();  
+        var rpnQueue = rpn.ToRPN(tokens);
     }
 }
