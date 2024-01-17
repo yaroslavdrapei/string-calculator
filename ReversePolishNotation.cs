@@ -20,6 +20,24 @@ public class ReversePolishNotation
                 return 0;
         }
     }
+    private int SimpleMath(int n1, int n2, string action)
+    {
+        switch (action)
+        {
+            case "+":
+                return n1 + n2;
+            case "-":
+                return n1 - n2;
+            case "*":
+                return n1 * n2;
+            case "/":
+                return n1 / n2;
+            case "^":
+                return (int)Math.Pow(n1, n2);
+            default:
+                return 0;
+        }
+    }
     public CustomQueue<string> ToRPN(CustomQueue<string> tokens)
     {
         CustomQueue<string> result = new();
@@ -77,5 +95,27 @@ public class ReversePolishNotation
         }
         
         return result;
+    }
+    public int CalculateRPN(CustomQueue<string> postfixed)
+    {
+        CustomStack<string> numbers = new();
+        while (postfixed.Count > 0)
+        {
+            string symbol = postfixed.Dequeue();
+
+            if (symbol.All(char.IsDigit))
+            {
+                numbers.Push(symbol);
+            }
+            else
+            {
+                int num1 = Convert.ToInt32(numbers.Pop());
+                int num2 = Convert.ToInt32(numbers.Pop());
+                
+                numbers.Push(SimpleMath(num2, num1, symbol).ToString());
+            }
+        }
+
+        return Convert.ToInt32(numbers.Pop());
     }
 }
