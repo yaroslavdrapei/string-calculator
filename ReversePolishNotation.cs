@@ -2,42 +2,6 @@
 
 public class ReversePolishNotation
 {
-    private int GetPrecedence(string oper)
-    {
-        switch (oper)
-        {
-            case "+":
-                return 1;
-            case "-":
-                return 1;
-            case "*":
-                return 2;
-            case "/":
-                return 2;
-            case "^":
-                return 3;
-            default:
-                return 0;
-        }
-    }
-    private int SimpleMath(int n1, int n2, string action)
-    {
-        switch (action)
-        {
-            case "+":
-                return n1 + n2;
-            case "-":
-                return n1 - n2;
-            case "*":
-                return n1 * n2;
-            case "/":
-                return n1 / n2;
-            case "^":
-                return (int)Math.Pow(n1, n2);
-            default:
-                return 0;
-        }
-    }
     public CustomQueue<string> ToRPN(CustomQueue<string> tokens)
     {
         CustomQueue<string> result = new();
@@ -79,7 +43,7 @@ public class ReversePolishNotation
                 }
 
                 // if token is a normal operator
-                if (GetPrecedence(stack.Peek()) >= GetPrecedence(token))
+                if (SimpleMath.GetPrecedence(stack.Peek()) >= SimpleMath.GetPrecedence(token))
                 {
                     result.Enqueue(stack.Pop());
                     stack.Push(token);
@@ -112,7 +76,7 @@ public class ReversePolishNotation
                 int num1 = Convert.ToInt32(numbers.Pop());
                 int num2 = Convert.ToInt32(numbers.Pop());
                 
-                numbers.Push(SimpleMath(num2, num1, symbol).ToString());
+                numbers.Push(SimpleMath.Calculation(num2, num1, symbol).ToString());
             }
         }
 
