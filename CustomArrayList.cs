@@ -1,4 +1,4 @@
-﻿namespace TestProjectApp;
+﻿namespace Assignment1;
 
 public class CustomArrayList<T>
 {

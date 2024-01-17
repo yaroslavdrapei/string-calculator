@@ -1,8 +1,4 @@
-﻿using System.Xml;
-using TestProjectApp;
-
-namespace Assignment1;
-
+﻿namespace Assignment1;
 public class Tokenizer
 {
     public CustomQueue<string> Tokenize(string input)
