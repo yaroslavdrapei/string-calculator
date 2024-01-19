@@ -64,4 +64,11 @@ public class CustomArrayList<T>
     {
         Console.WriteLine(string.Join(" ", _array) + $" Length: {_array.Length}, {_pointer}");
     }
+
+    public override string ToString()
+    {
+        string result = "";
+        for (int i = 0; i < _pointer; i++) result += _array[i];
+        return result;
+    }
 }

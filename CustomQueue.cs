@@ -12,8 +12,9 @@ public class CustomQueue<T>
 
     public T Peek() { return _list.ShowFirst(); }
 
-    public void Print()
-    {
-        _list.Print();
-    }
+    public void Print() { _list.Print(); }
+
+    public void Clear() { _list = new CustomArrayList<T>(); }
+
+    public override string ToString() { return _list.ToString(); }
 }

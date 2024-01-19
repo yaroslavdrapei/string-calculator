@@ -3,30 +3,30 @@ public class Tokenizer
 {
     public CustomQueue<string> Tokenize(string input)
     {
-        string digits = "";
-        CustomQueue<string> queue = new();
+        CustomQueue<char> digits = new();
+        CustomQueue<string> result = new();
         foreach (var chr in input)
         {
-            if (char.IsDigit(chr)) { digits += chr; }
+            if (char.IsDigit(chr)) { digits.Enqueue(chr); }
             else if (chr == ' ')
             {
-                if (digits == "") continue;
-                queue.Enqueue(digits);
-                digits = "";
+                if (digits.Count == 0) continue;
+                result.Enqueue(digits.ToString());
+                digits.Clear();
             }
             else
             {
-                if (digits != "")
+                if (digits.Count != 0)
                 {
-                    queue.Enqueue(digits);
-                    digits = "";  
+                    result.Enqueue(digits.ToString());
+                    digits.Clear();  
                 };
-                queue.Enqueue(chr.ToString());
+                result.Enqueue(chr.ToString());
             }
         }
         
-        if (digits != "") queue.Enqueue(digits);
+        if (digits.Count != 0) result.Enqueue(digits.ToString());
 
-        return queue;
+        return result;
     }
 }
