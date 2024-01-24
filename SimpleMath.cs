@@ -19,7 +19,7 @@ public static class SimpleMath
                 return 0;
         }
     }
-    public static int Calculation(int n1, int n2, string action)
+    public static double Calculation(double n1, double n2, string action)
     {
         switch (action)
         {
@@ -36,5 +36,18 @@ public static class SimpleMath
             default:
                 return 0;
         }
+    }
+    public static bool IsNumeric(char chr)
+    {
+        return char.IsDigit(chr) || chr == '.';
+    }
+    public static bool IsNumeric(string str)
+    {
+        foreach (var chr in str)
+        {
+            if (!char.IsDigit(chr) && chr != '.') return false;
+        }
+
+        return true;
     }
 }

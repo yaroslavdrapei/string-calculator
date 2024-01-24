@@ -7,7 +7,7 @@ public class Tokenizer
         CustomQueue<string> result = new();
         foreach (var chr in input)
         {
-            if (char.IsDigit(chr)) { digits.Enqueue(chr); }
+            if (SimpleMath.IsNumeric(chr)) digits.Enqueue(chr);
             else if (chr == ' ')
             {
                 if (digits.Count == 0) continue;

@@ -9,8 +9,8 @@ public class ReversePolishNotation
         while (tokens.Count > 0)
         {
             string token = tokens.Dequeue();
-
-            if (token.All(char.IsDigit))
+            
+            if (SimpleMath.IsNumeric(token))
             {
                 result.Enqueue(token);
             }
@@ -60,26 +60,26 @@ public class ReversePolishNotation
         
         return result;
     }
-    public int CalculateRPN(CustomQueue<string> postfixed)
+    public double CalculateRPN(CustomQueue<string> postfixed)
     {
         CustomStack<string> numbers = new();
         while (postfixed.Count > 0)
         {
             string symbol = postfixed.Dequeue();
-
-            if (symbol.All(char.IsDigit))
+            if (symbol.All(char.IsDigit) || symbol.Contains('.'))
             {
                 numbers.Push(symbol);
             }
             else
             {
-                int num1 = Convert.ToInt32(numbers.Pop());
-                int num2 = Convert.ToInt32(numbers.Pop());
+                // Replacing . with , to make ToDouble work
+                double num1 = Convert.ToDouble(numbers.Pop().Replace('.', ','));
+                double num2 = Convert.ToDouble(numbers.Pop().Replace('.', ','));
                 
                 numbers.Push(SimpleMath.Calculation(num2, num1, symbol).ToString());
             }
         }
 
-        return Convert.ToInt32(numbers.Pop());
+        return Convert.ToDouble(numbers.Pop().Replace('.', ','));
     }
 }
