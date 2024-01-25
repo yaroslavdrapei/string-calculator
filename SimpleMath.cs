@@ -45,9 +45,9 @@ public static class SimpleMath
     {
         foreach (var chr in str)
         {
-            if (!char.IsDigit(chr) && chr != '.') return false;
+            if (!char.IsDigit(chr) && chr != '.' && !(chr == '-' && str.Length != 1)) return false;
         }
-
+        
         return true;
     }
 }

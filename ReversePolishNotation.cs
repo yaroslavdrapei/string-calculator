@@ -66,7 +66,7 @@ public class ReversePolishNotation
         while (postfixed.Count > 0)
         {
             string symbol = postfixed.Dequeue();
-            if (symbol.All(char.IsDigit) || symbol.Contains('.'))
+            if (SimpleMath.IsNumeric(symbol))
             {
                 numbers.Push(symbol);
             }
@@ -83,3 +83,9 @@ public class ReversePolishNotation
         return Convert.ToDouble(numbers.Pop().Replace('.', ','));
     }
 }
+
+/*
+ -10+3
+ 10-3
+ 10+-3
+*/

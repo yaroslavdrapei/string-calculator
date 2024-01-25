@@ -11,6 +11,7 @@ public class CustomQueue<T>
     public T Dequeue() { return _list.RemoveStart(); }
 
     public T Peek() { return _list.ShowFirst(); }
+    public T PeekLast() { return _list.ShowLast(); }
 
     public void Print() { _list.Print(); }
 
