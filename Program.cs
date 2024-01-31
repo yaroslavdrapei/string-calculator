@@ -10,11 +10,9 @@ public class Program
         {
             var tokenizer = new Tokenizer();
             var tokens = tokenizer.Tokenize(input);
-            tokens.Print();
         
             var rpn = new ReversePolishNotation();  
             var rpnQueue = rpn.ToRPN(tokens);
-            rpnQueue.Print();
             
             var result = rpn.CalculateRPN(rpnQueue);
             Console.WriteLine($"< {result}");
